@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<title>ControlCV</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/x-icon" href="../static/imgs/favicon.ico" />
+<link rel="stylesheet" href="../static/css/stylecss.css" media="screen"
+	type="text/css" />
+
+<style type="text/css">
+h1 {
+	color: #369;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 250%;
+}
+
+h2, h3 {
+	color: #444;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: lighter;
+}
+
+body {
+	margin: 2em;
+}
+
+body, input[text], button {
+	color: #888;
+	font-family: Cambria, Georgia;
+}
+/* everywhere else */
+table#titulo1 {
+	font-size: 36px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #1d77bc;
+	font-weight: bold;
+}
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+input#dateShow {
+	margin-left: 135px;
+	padding-left: 8px;
+}
+
+input#okButton {
+	margin-left: 5px;
+	padding-left: 8px;
+}
+
+body {
+	margin: 2em;
+}
+
+p#foo {
+	white-space: pre;
+}
+
+table {
+	border-collapse: collapse;
+	width: 85%;
+	text-align: center;
+	border-radius: 16px;
+}
+
+th {
+	font-size: 13px;
+	color: white;
+	font-weight: bold;
+	border-bottom: 2px solid #ddd;
+	background-color: #1d77bc;
+}
+
+td {
+	font-size: 11px;
+	font-weight: normal;
+	padding: 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+.table100.ver1 {
+	border-radius: 16px;
+}
+
+/* Popup container - can be anything you want */
+.popup {
+	position: relative;
+	display: table-cell;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+	visibility: hidden;
+	position: absolute;
+	width: 340px;
+	margin-left: -170px;
+	left: 50%;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 8px 0;
+	z-index: 1;
+	bottom: 125%;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+	content: "ll";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+	visibility: visible;
+	-webkit-animation: fadeIn 1s;
+	animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@
+-webkit-keyframes fadeIn {
+	from {opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+@
+keyframes fadeIn {
+	from {opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+}
+</style>
+</head>
+
+
+<body background="../static/imgs/soft_white_background.jpg">
+	<!--The content below is only a placeholder and can be replaced.-->
+	<table align="center" border="0" width="50%" bgcolor="#FFF">
+		<tr>
+			<td align="left"><img src="../static/imgs/logo_black_header.png" /></td>
+			<td align="center"><span th:text="${title_in_model}"></span></td>
+		</tr>
+	</table>
+	<br />
+	<!-- 
+	<input type="date" id="dateShow" />
+	<input type="hidden" id="fileinput" />
+	<input type="submit" value="Ok" (click)="loadFile()" id="okButton" /> -->
+
+	<br />
+	<br />
+
+	<div class="table100 ver1 m-b-110">
+		<table align="center" data-vertable="ver1">
+			<thead>
+				<tr>
+					<th align="center" width="3%">#</th>
+					<th align="center" width="7%"><span
+						th:text="${(title.date)[0]}"></span></th>
+					<th align="center" width="6%"><span
+						th:text="${title.process.codProcess}"></span></th>
+					<th align="center" width="8%"><span
+						th:text="${title.process.process}"></span></th>
+					<th align="center" width="20%"><span
+						th:text="${(title.interfaz)[0]}"></span></th>
+					<th align="center" width="7%"><span
+						th:text="${(title.time0)[0]}"></span></th>
+					<th align="center" width="7%"><span
+						th:text="${(title.time)[0]}"></span></th>
+					<th align="center" width="7%"><span
+						th:text="${(title.regsCTL)[0]}"></span></th>
+					<th align="center" width="7%"><span
+						th:text="${(title.regsIns)[0].dbname}"></span></th>
+					<th align="center" width="4%">Diffs</th>
+					<th align="center" width="4%">Cod</th>
+					<th align="center" width="15%">Descripcion</th>
+					<th align="center" width="5%"><span
+						th:text="${(title.state)[0]}"></span></th>
+				</tr>
+			</thead>
+			<!-- -->
+			<tbody>
+				<tr th:each="interfaz : ${processes}">
+					<td align="center">-</td>
+					<td align="center">
+						<div th:each="date1: ${interfaz.date}">
+							<span th:text="${date1}"></span>
+						</div>
+					</td>
+					<td align="center"><span th:text="${interfaz.codProcess}"></span></td>
+					<td align="center"><span th:text="${interfaz.process}"></span></td>
+					<td align="center">
+						<div th:each="interfaz1: ${interfaz.interfaz}">
+							<span th:text="${interfaz1}"></span>
+						</div>
+					</td>
+					<td align="center">
+						<div th:each="time01: ${interfaz.time0}">
+							<span th:text="${time01}"></span>
+						</div>
+					</td>
+					<td align="center">
+						<div th:each="time1: ${interfaz.time}">
+							<span th:text="${time1}"></span>
+						</div>
+					</td>
+					<td align="center">
+						<div th:each="regsCTL1: ${interfaz.regsCTL}">
+							<span th:text="${regsCTL1}"></span>
+						</div>
+					</td>
+					<td align="center">	Regs db </td>
+					<td align="center" width="4%">-</td>
+					<td align="center">
+						<div th:each="state1: ${interfaz.state}">
+							<span th:text="${state1}"></span>
+						</div>
+					</td>
+					<td align="center">
+						<div th:each="descr1: ${interfaz.description}">
+							<span th:text="${descr1}"></span>
+						</div>
+					</td>
+					<td align="center"><img width="17"
+						src="assets/images/{{interfaz.imags}}" /></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+
+
+</body>
+</html>
